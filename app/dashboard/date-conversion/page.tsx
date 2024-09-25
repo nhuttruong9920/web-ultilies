@@ -36,6 +36,13 @@ export default function Page() {
     setDateFrom2010(result);
   };
 
+  // const convertDateRangeToDuration = (
+  //   dates: RangePickerProps["value"],
+  //   dateString: [string, string]
+  // ) => {
+  //   console.log(dates);
+  // };
+
   const copyToClipboard = (value: string) => {
     return () => {
       navigator.clipboard.writeText(value.toString());
@@ -45,60 +52,123 @@ export default function Page() {
   return (
     <>
       <div className="p-8">
-        <Title level={1}>2010 Timestamp Conversion</Title>
-        <Row gutter={16}>
-          <Col xs={24} md={12}>
-            <Card>
-              <Title level={5}>Pick a date</Title>
-              <DatePicker
-                size="large"
-                showTime
-                defaultValue={dayjs()}
-                allowClear={false}
-                onChange={convertDateTo2010Seconds}
-                className="w-full"
-              />
-              <Title level={5}>Seconds from 2010</Title>
-              <Flex gap="middle">
-                <Input size="large" value={secondsFrom2010} variant="filled" />
-                <Button
-                  icon={<CopyOutlined />}
+        <div className="mb-8">
+          <Title level={3}>2010 Timestamp Conversion</Title>
+          <Row gutter={[16, 16]}>
+            <Col xs={24} md={12}>
+              <Card className="shadow">
+                <Title level={5}>Pick a date</Title>
+                <DatePicker
                   size="large"
-                  type="dashed"
-                  onClick={copyToClipboard(secondsFrom2010.toString())}
+                  showTime
+                  defaultValue={dayjs()}
+                  allowClear={false}
+                  onChange={convertDateTo2010Seconds}
+                  className="w-full !mb-4"
                 />
-              </Flex>
-            </Card>
-          </Col>
-          <Col xs={24} md={12}>
-            <Card>
-              <Title level={5}>Enter seconds from 2010</Title>
-              <InputNumber
-                size="large"
-                min={0}
-                defaultValue={0}
-                onChange={convertDateTo2010Date}
-                className="w-full"
-              />
-              <Title level={5}>Seconds from 2010</Title>
-              <Flex gap="middle">
-                <Input
+                <Title level={5}>Seconds from 2010</Title>
+                <Flex gap="middle">
+                  <Input
+                    size="large"
+                    value={secondsFrom2010}
+                    variant="filled"
+                  />
+                  <Button
+                    icon={<CopyOutlined />}
+                    size="large"
+                    type="dashed"
+                    onClick={copyToClipboard(secondsFrom2010.toString())}
+                  />
+                </Flex>
+              </Card>
+            </Col>
+            <Col xs={24} md={12}>
+              <Card className="shadow">
+                <Title level={5}>Enter seconds from 2010</Title>
+                <InputNumber
                   size="large"
-                  value={dayjs(dateFrom2010).format("YYYY-MM-DD HH:mm:ss")}
-                  variant="filled"
+                  min={0}
+                  defaultValue={0}
+                  onChange={convertDateTo2010Date}
+                  className="!w-full !mb-4"
                 />
-                <Button
-                  icon={<CopyOutlined />}
+                <Title level={5}>Seconds from 2010</Title>
+                <Flex gap="middle">
+                  <Input
+                    size="large"
+                    value={dayjs(dateFrom2010).format("YYYY-MM-DD HH:mm:ss")}
+                    variant="filled"
+                  />
+                  <Button
+                    icon={<CopyOutlined />}
+                    size="large"
+                    type="dashed"
+                    onClick={copyToClipboard(
+                      dayjs(dateFrom2010).format("YYYY-MM-DD HH:mm:ss")
+                    )}
+                  />
+                </Flex>
+              </Card>
+            </Col>
+          </Row>
+        </div>
+        {/* <div>
+          <Title level={3}>Duration</Title>
+          <Row gutter={[16, 16]}>
+            <Col xs={24} md={12}>
+              <Card className="shadow">
+                <Title level={5}>Pick a date range</Title>
+                <RangePicker
+                  showTime
+                  className="w-full"
+                  onChange={convertDateRangeToDuration}
+                />
+                <Title level={5}>Seconds from 2010</Title>
+                <Flex gap="middle">
+                  <Input
+                    size="large"
+                    value={secondsFrom2010}
+                    variant="filled"
+                  />
+                  <Button
+                    icon={<CopyOutlined />}
+                    size="large"
+                    type="dashed"
+                    onClick={copyToClipboard(secondsFrom2010.toString())}
+                  />
+                </Flex>
+              </Card>
+            </Col>
+            <Col xs={24} md={12}>
+              <Card className="shadow">
+                <Title level={5}>Enter seconds from 2010</Title>
+                <InputNumber
                   size="large"
-                  type="dashed"
-                  onClick={copyToClipboard(
-                    dayjs(dateFrom2010).format("YYYY-MM-DD HH:mm:ss")
-                  )}
+                  min={0}
+                  defaultValue={0}
+                  onChange={convertDateTo2010Date}
+                  className="w-full"
                 />
-              </Flex>
-            </Card>
-          </Col>
-        </Row>
+                <Title level={5}>Seconds from 2010</Title>
+                <Flex gap="middle">
+                  <Input
+                    size="large"
+                    value={dayjs(dateFrom2010).format("YYYY-MM-DD HH:mm:ss")}
+                    variant="filled"
+                  />
+                  <Button
+                    icon={<CopyOutlined />}
+                    size="large"
+                    type="dashed"
+                    onClick={copyToClipboard(
+                      dayjs(dateFrom2010).format("YYYY-MM-DD HH:mm:ss")
+                    )}
+                  />
+                </Flex>
+              </Card>
+            </Col>
+          </Row>
+        </div> */}
       </div>
     </>
   );
