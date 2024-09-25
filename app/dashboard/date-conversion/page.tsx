@@ -1,6 +1,7 @@
 "use client";
 
 import formatDateService from "@/app/lib/formatDateService";
+import { CopyOutlined } from "@ant-design/icons";
 import {
   Button,
   Card,
@@ -15,7 +16,6 @@ import {
 import dayjs from "dayjs";
 import { useState } from "react";
 const { Title } = Typography;
-import { CopyOutlined } from "@ant-design/icons";
 
 export default function Page() {
   const [secondsFrom2010, setSecondsFrom2010] = useState(
@@ -36,7 +36,7 @@ export default function Page() {
     setDateFrom2010(result);
   };
 
-  const copyToClipboard = (value: any) => {
+  const copyToClipboard = (value: string) => {
     return () => {
       navigator.clipboard.writeText(value.toString());
     };
@@ -65,7 +65,7 @@ export default function Page() {
                   icon={<CopyOutlined />}
                   size="large"
                   type="dashed"
-                  onClick={copyToClipboard(secondsFrom2010)}
+                  onClick={copyToClipboard(secondsFrom2010.toString())}
                 />
               </Flex>
             </Card>
